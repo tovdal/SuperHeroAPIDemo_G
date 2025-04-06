@@ -39,5 +39,11 @@ namespace SuperHeroAPIDemo_G.Controllers
             }
             return Ok(hero);
         }
+        [HttpPost]
+        public async Task<ActionResult<SuperHero>>PostHero(SuperHero hero)
+        {
+            heroes.Add(hero);
+            return Ok(heroes);
+        }
     }
 }
