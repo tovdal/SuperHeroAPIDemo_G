@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SuperHeroAPIDemo_G.Data;
 using SuperHeroAPIDemo_G.Models;
 
 namespace SuperHeroAPIDemo_G.Controllers
@@ -8,6 +9,12 @@ namespace SuperHeroAPIDemo_G.Controllers
     [ApiController]
     public class SuperHeroController : ControllerBase
     {
+        private readonly ApplicationDbContext _dbContext;
+        public SuperHeroController(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         private static List<SuperHero> heroes = new List<SuperHero>
         {
             new SuperHero
