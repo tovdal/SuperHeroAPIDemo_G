@@ -45,5 +45,22 @@ namespace SuperHeroAPIDemo_G.Controllers
             heroes.Add(hero);
             return Ok(heroes);
         }
+        [HttpPut]
+        public async Task<ActionResult<SuperHero>> UpdateHero(SuperHero hero)
+        {
+            var heroToUpdate = heroes.Find(s => s.Id == hero.Id);
+
+            if (heroToUpdate == null)
+            {
+                return BadRequest("Superhero not found");
+            }
+
+            heroToUpdate.Name = hero.Name;
+            heroToUpdate.FirstName = hero.FirstName;
+            heroToUpdate.SurName = hero.SurName;
+            heroToUpdate.City = hero.City;
+
+            return Ok(heroes);
+        }
     }
 }
