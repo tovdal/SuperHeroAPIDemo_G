@@ -26,5 +26,18 @@ namespace SuperHeroAPIDemo_G.Controllers
         {
             return Ok(heroes);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<SuperHero>> GetOne(int id)
+        {
+            var hero = heroes.Find(s => s.Id == id);
+
+            if (hero == null)
+            {
+                return BadRequest("SuperHero not found");
+            }
+            return Ok(hero);
+        }
     }
 }
