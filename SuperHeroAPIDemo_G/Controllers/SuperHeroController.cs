@@ -62,5 +62,24 @@ namespace SuperHeroAPIDemo_G.Controllers
 
             return Ok(heroes);
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<ActionResult<SuperHero>> Delete(int id)
+        {
+            var hero = heroes.Find(s => s.Id == id);
+
+            if (hero == null)
+            {
+                return BadRequest("Superhero not found");
+            }
+
+            heroes.Remove(hero);
+            return Ok(heroes);
+            //This is HARD delete!
+
+            // In reality its bad to have logic in here,
+            // should be Seperation of consern, with services and DI
+        }
     }
 }
